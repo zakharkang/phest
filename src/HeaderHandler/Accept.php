@@ -59,9 +59,13 @@ class Accept extends Middleware
         $this->acceptable($evt, $app);
         
         //Can we parse this Content-Type?
+/** Header check start
         if (!($this->mediaType = $app->request->getHeader('Content-Type'))) {
+*/
             $this->mediaType = static::DEF;
+/** Header check end
         }
+*/
         if (!isset($this->supported[$this->mediaType])) {
             $evt->stop();
             $msg = $this->mediaType.' is not supported by the requested resource';
